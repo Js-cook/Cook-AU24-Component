@@ -182,29 +182,33 @@ will likely refine your design to make your implementation easier to use.
 
 - Component Design #1: Music-Stats
   - **Description**:
-    - The purpose of this component is to provide stats and process queries related to songs, artists, or albums using a pre-existing API such as Spotify or Last.fm. This component would likely just support simple queries and would not interact with user accounts or provide any sort of authentication support.
+    - The purpose of this component is to store and retrieve stats related to albums, tracks, or music artists. These stats can be added and retrieved by the client and this component could be used to store/process data received from API requests.
   - **Kernel Methods**:
-    - `void setCredentials(String clientID, String clientSecret)`: sets the client ID and secret as field variables for use by other methods
-    - `String fetchBearer()`: makes a request using the client ID and secret fields and returns the Bearer token if successful
+    - `void setAlbumData(String title, String artist, String genre, int monthlyListeners)`: creates and stores a new album with the given data
+    - `void setArtistData(String name, String genre, String nationality, int monthlyListeners)`: creates and stores a new artist with the given data
+    - `void setTrackData(String name, String genre, String artist, double duration)`: creates and stores a new track with the given data
   - **Secondary Methods**:
-    - `String getAlbumData(String name)`: fetches data for a given album and returns it in string form (possibly a JSON string)
-    - `String getTrackData(String name)`: fetches data for a given track and returns it in string form (possibly a JSON string)
-    - `String getArtistData(String name)`: fetches data for a given artist and returns it in string form (possibly a JSON string)
+    - `String getAlbumData(String name)`: fetches data for a given album and returns it in string form
+    - `String getTrackData(String name)`: fetches data for a given track and returns it in string form
+    - `String getArtistData(String name)`: fetches data for a given artist and returns it in string form
+    - `void removeAlbum(String name)`: removes an album of the given name if present
+    - `void removeTrack(String name)`: removes a track of the given name if present
+    - `void removeArtist(String name)`: removes an artist of the given name if present
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - The component likely would be mutable as it needs to store information like the client ID and secret such that other requests can be carried out.
+      - The component likely would be mutable as it needs to store information like the input albums, tracks, and artists as well as retrieve them.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
       - Internal classes for data/response representation might be helpful for the client but I'm unsure about any specifics at the moment.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - Field variables for client ID and secret would be used and possibly an additional field for the bearer token once retrieved.
+      - Field variables such as data structures might be helpful for storing and organizing the user inputs.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - I'm currently not super certain about all the methods that would need to belong to the kernel and secondary but ideally kernel methods would be responsible for doing most of the technical work with the HTTP requests.
+      - I'm currently not super certain about all the methods that would need to belong to the kernel and secondary and some could be reorganized elsewhere.
 
-- Component Design #2: Stat-plot
+- Component Design #2: Stat-calc
   - **Description**:
     - This component aims to take in coordinate points in 2D or 3D and provide functionality to perform basic calculations on the provided data. Such operations could be calculating measures of central tendency, distance between points, or even basic regression.
   - **Kernel Methods**:
@@ -235,6 +239,7 @@ will likely refine your design to make your implementation easier to use.
   - **Kernel Methods**:
     - `void addItem(String name)`: adds item to the watchlist
     - `String removeItem(String name)`: removes existing item from the watchlist and returns it
+    - `String removeAnyItem()`: removes an arbitrary item from the watchlist and returns it
   - **Secondary Methods**:
     - `String randomSelection()`: selects a random item from the watchlist
     - `String[] displayWatchlist()`: returns the contents of the watchlist in the form of an array
