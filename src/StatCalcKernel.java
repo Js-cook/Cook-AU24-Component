@@ -36,4 +36,15 @@ public interface StatCalcKernel extends Standard<Sequence> {
      * @ensures graphSize = |this|
      */
     int graphSize();
+
+    /**
+     * Reports the coordinate at a given position in the graph.
+     *
+     * @param pos
+     *            the position of the desired coordinate
+     * @requires 0 <= pos < |this|
+     * @return the coordinate
+     * @ensures coordinateAt = [coordinate at the given position]
+     */
+    Sequence<Integer> coordinateAt(int pos);
 }
