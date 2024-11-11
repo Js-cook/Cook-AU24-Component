@@ -4,7 +4,7 @@ import components.standard.Standard;
 /***
  * StatCalc kernel with primary methods.
  */
-public interface StatCalcKernel extends Standard<Sequence> {
+public interface StatCalcKernel extends Standard<StatCalc> {
 
     /**
      * Adds a set of coordinates to {@code this}.

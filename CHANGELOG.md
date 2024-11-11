@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
+## 2024.11.11
+
+### Added
+
+- Designed the kernel implementation for StatCalc component
+
+### Updated
+
+- Made minor changes to kernel abstract class to resolve some issues with implementing Standard methods
+- Deleted Javadoc comments in abstract class since they get inherited from the interface anyway
+
 ## 2024.10.31
 
 ### Added
