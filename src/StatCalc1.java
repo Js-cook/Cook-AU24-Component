@@ -24,6 +24,11 @@ public class StatCalc1 extends StatCalcSecondary {
     private int dimensionIndex;
 
     /**
+     * Default dimension for no arg constructor.
+     */
+    private int defaultDimension = 2;
+
+    /**
      * Creator of initial representation.
      *
      * @param dimensionIndex
@@ -38,7 +43,7 @@ public class StatCalc1 extends StatCalcSecondary {
      * No argument constructor.
      */
     public StatCalc1() {
-        this.createNewRep(2);
+        this.createNewRep(this.defaultDimension);
     }
 
     /**
