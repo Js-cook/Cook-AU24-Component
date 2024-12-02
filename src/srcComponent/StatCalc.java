@@ -1,3 +1,5 @@
+package srcComponent;
+
 import components.sequence.Sequence;
 
 /**

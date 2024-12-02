@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
+## 2024.12.02
+
+### Added
+
+- Designed test suite for StatCalc component
+- Designed two different use cases for StatCalc component
+
+### Updated
+
+- Made minor changes and fixes to both classes based on testing
+- Updated file structure in src folder for simplicity with the use cases there also
+
 ## 2024.11.11
 
 ### Added
