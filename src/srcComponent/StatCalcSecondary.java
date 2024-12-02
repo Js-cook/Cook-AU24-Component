@@ -1,3 +1,5 @@
+package srcComponent;
+
 import components.sequence.Sequence;
 
 /**
@@ -11,8 +13,12 @@ public abstract class StatCalcSecondary implements StatCalc {
         StringBuilder result = new StringBuilder("<");
         for (int i = 0; i < this.graphSize(); i++) {
             result.append("(");
-            for (int j = 0; i < this.coordinateAt(i).length(); j++) {
-                result.append(this.coordinateAt(i).entry(j) + ", ");
+            for (int j = 0; j < this.coordinateAt(i).length(); j++) {
+                if (j == this.coordinateAt(i).length() - 1) {
+                    result.append(this.coordinateAt(i).entry(j));
+                } else {
+                    result.append(this.coordinateAt(i).entry(j) + ", ");
+                }
             }
             result.append("), ");
         }
@@ -32,6 +38,9 @@ public abstract class StatCalcSecondary implements StatCalc {
 
         if (obj instanceof StatCalc) {
             StatCalc castedObj = (StatCalc) obj;
+            if (castedObj.dimensions() != this.dimensions()) {
+                isEqual = false;
+            }
             for (int i = 0; i < this.graphSize() && isEqual; i++) {
                 Sequence<Integer> coordinateSet = castedObj.coordinateAt(i);
                 if (!this.coordinateAt(i).equals(coordinateSet)) {
@@ -65,6 +74,7 @@ public abstract class StatCalcSecondary implements StatCalc {
         }
 
         return (double) runningSum / startingSize;
+
     }
 
     @Override
@@ -76,7 +86,7 @@ public abstract class StatCalcSecondary implements StatCalc {
             sumOfSquareDistToMean += Math.pow(
                     Math.abs(coordinateSet.entry(dimensionIndex) - mean), 2.0);
         }
-        sumOfSquareDistToMean /= this.graphSize();
+        sumOfSquareDistToMean /= (this.graphSize() - 1);
         return Math.sqrt(sumOfSquareDistToMean);
     }
 
@@ -107,7 +117,8 @@ public abstract class StatCalcSecondary implements StatCalc {
     }
 
     @Override
-    public final int distance(Sequence<Integer> pointA, Sequence<Integer> pointB) {
+    public final int distance(Sequence<Integer> pointA,
+            Sequence<Integer> pointB) {
         int sumOfSquaredTerms = 0;
         for (int i = 0; i < pointA.length(); i++) {
             sumOfSquaredTerms += Math.pow(pointA.entry(i) - pointB.entry(i), 2);

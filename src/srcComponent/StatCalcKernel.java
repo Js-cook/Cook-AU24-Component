@@ -1,3 +1,5 @@
+package srcComponent;
+
 import components.sequence.Sequence;
 import components.standard.Standard;
 
@@ -36,6 +38,14 @@ public interface StatCalcKernel extends Standard<StatCalc> {
      * @ensures graphSize = |this|
      */
     int graphSize();
+
+    /**
+     * Reports the dimensions of the coordinates stored in the graph.
+     *
+     * @return the dimensions of the graph coordinates
+     * @ensures dimensions = [dimensions of graph coordinates]
+     */
+    int dimensions();
 
     /**
      * Reports the coordinate at a given position in the graph.
